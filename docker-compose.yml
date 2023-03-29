@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+    frontend:
+        stdin_open: true
+        tty: true
+        container_name: final-demo
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+            - .:/app
+            - /app/node_modules
+        ports:
+            - '5173:5173'
