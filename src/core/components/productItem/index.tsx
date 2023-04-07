@@ -1,18 +1,24 @@
+import LoadedImage from '@/utils/helpers/imageLoading';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SecondaryButton } from '../buttons';
 
-function ProductItems() {
+function ProductItems({ data }) {
+
+
     return (
-        <div
-            className="relative p-4 w-full bg-white rounded-[21px] overflow-hidden shadow hover:shadow-md"
+        <article
+            className="relative p-4 w-full bg-white rounded-[21px] overflow-hidden shadow hover:shadow-md card"
             style={{ minHeight: 160 }}
         >
+
+
             <div>
-                <div className="absolute top-0 right-0 mt-2 mr-2 p-4 z-20 flex justify-between">
-                    <div className="inline-flex items-center justify-center w-8 h-8 p-2 rounded-full bg-white shadow-sm">
+                <div className="absolute top-0 right-0 z-20 flex justify-between p-4 mt-2 mr-2">
+                    <div className="inline-flex items-center justify-center w-8 h-8 p-2 bg-white rounded-full shadow-sm">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-8 h-8 h-auto fill-current text-red-500"
+                            className="w-8 h-8 h-auto text-red-500 fill-current"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                         >
@@ -25,17 +31,17 @@ function ProductItems() {
                     </div>
                 </div>
                 <div className="relative block h-full">
-                    <div className="h-64 bg-gray-100 rounded-3xl" />
+                    {data._id ? <Link to={`${data._id}`} className="absolute top-0 left-0 w-full h-full" /> : <></>}
+                    <img src={LoadedImage(data.img)} className="object-cover w-full h-64 bg-gray-100 rounded-3xl" />
                 </div>
             </div>
-            <h2 className="pr-14 mt-5 text-textPrimary text-left text-lg font-semibold line-clamp-1">
-                Hamburger Street Food Seafood Fast Food
-            </h2>
-            <div className="flex justify-between items-center py-2">
-                <p className="mt-2 text-textSecondary text-2xl">$12.99</p>
+            <h2 className="mt-5 text-lg font-semibold text-left truncate pr-14 text-textPrimary line-clamp-1">{data.name}</h2>
+            <div className="flex items-center justify-between py-2">
+                <p className="mt-2 text-2xl text-textSecondary">${data.price}</p>
                 <SecondaryButton>Add To Cart</SecondaryButton>
             </div>
-        </div>
+
+        </article>
     );
 }
 

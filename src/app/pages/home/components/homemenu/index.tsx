@@ -1,8 +1,18 @@
+import { RootState } from '@/app/store';
 import { SecondaryButton } from '@/core/components/buttons';
 import ProductItems from '@/core/components/productItem';
-import React from 'react';
+import { getRecommend } from '@/core/services/product';
+import React, { useEffect, Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function HomeMenu() {
+    const dispatch = useDispatch();
+    const product = useSelector((state: RootState) => state.product);
+
+    useEffect(() => {
+        dispatch(getRecommend());
+    }, []);
+
     return (
         <section className="HomeMenu xl:mt-40 bg-primary1 w-full text-center pb-16">
             <div className="pt-9 md:pt-[75px]">
@@ -19,11 +29,12 @@ function HomeMenu() {
                     <SecondaryButton>Beverage</SecondaryButton>
                 </div>
                 <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7 container mx-auto pb-3 p-3">
-                    {Array(6)
-                        .fill(0)
-                        .map((value, index) => (
-                            <ProductItems key={index} />
+                    <Suspense fallback={<>loading...</>}>
+                        {product.result.map((value, index) => (
+                            <ProductItems key={index} data={value} />
                         ))}
+                    </Suspense>
+
                 </div>
             </div>
         </section>

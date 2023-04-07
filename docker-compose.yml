@@ -12,3 +12,24 @@ services:
             - /app/node_modules
         ports:
             - '5173:5173'
+    backend:
+        stdin_open: true
+        tty: true
+        container_name: final-demo-backend
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        environment:
+            - PORT=8888
+            - MONGODB_URL=mongodb+srv://thebigger:hungqn1234@cluster0.4t4dmab.mongodb.net/?retryWrites=true&w=majority
+            - ACCESS_TOKEN_SECRET=Th3-bigger-name
+            - REFRESH_TOKEN_SECRET=Th3-bigger-name-refresh
+            - CLOUD_NAME=dk4gkjn0g
+            - CLOUDINARY_API_KEY=778434668915849
+            - CLOUDINARY_API_SECRET=zzIzcPUgUnet_BCsodXSvWnP0jE
+        volumes:
+            - ./server:/app/server
+            - /app/server/node_modules
+        ports:
+            - '8888:8888'
+        command: npm run dev

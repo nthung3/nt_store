@@ -1,23 +1,22 @@
 import React from 'react';
 import CustomerImg from '@/utils/assets/images/Group 57.png';
+import LoadedImage from '@/utils/helpers/imageLoading';
 function HomeCustomer() {
     return (
-        <section className="HomeWelcome pt-20 pb-4 bg-white">
-            <div className="flex-col-reverse md:flex-row mt-0 md:mt-20 container mx-auto flex justify-between items-center">
-                <div className="text-center pt-4 md:text-left max-w-xl">
-                    <h1 className="text-5xl font-semibold text-textPrimary">
-                        Our Lovely Customer Loves Our Food
-                    </h1>
-                    <p className=" text-lg text-textGray py-4 mr-10 ">
+        <section className="pt-20 pb-4 HomeWelcome">
+            <div className="container flex flex-col-reverse items-center justify-between mx-auto mt-0 md:flex-row md:mt-20">
+                <div className="max-w-xl pt-4 text-center md:text-left">
+                    <h1 className="text-5xl font-semibold text-textPrimary">Our Lovely Customer Loves Our Food</h1>
+                    <p className="py-4 mr-10 text-lg text-textGray">
                         “Nemo Enim Ipsam Voluptatem Quia Voluptas Sit Aspernatur Aut Odit Aut Fugit, Sed Quia
                         Condectetur magni dolores eos qui ratione voluptatejn sequi nestuist, Lorem ipsum dolor sit
                         amet, Consectetur adipopscing elit, Sed do eisum temoor incididunt ut labore et dolore magna
                         aliquo!.
                     </p>
-                    <div className="flex justify-center md:justify-start items-center">Star...</div>
-                    <div className="py-3 flex md:flex-col items-center md:items-start justify-between">
+                    <div className="flex items-center justify-center md:justify-start">Star...</div>
+                    <div className="flex items-center justify-between py-3 md:flex-col md:items-start">
                         <div>
-                            <h3 className="font-semibold text-textPrimary text-2xl">Courtney Henry</h3>
+                            <h3 className="text-2xl font-semibold text-textPrimary">Courtney Henry</h3>
                             <p className="text-lg text-textGray">Sylhet, Bangladesh</p>
                         </div>
 
@@ -27,7 +26,7 @@ function HomeCustomer() {
                         </div>
                     </div>
                 </div>
-                <img src={CustomerImg} alt="welcome image" className="max-w-xl max-h-[600px]" />
+                <img src={LoadedImage(CustomerImg)} alt="welcome image" className="max-w-xl max-h-[600px]" />
             </div>
         </section>
     );

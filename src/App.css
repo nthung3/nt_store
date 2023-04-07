@@ -23,9 +23,16 @@ video {
 body {
     min-height: 100vh;
 }
+.card {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 @media screen and (max-width: 767px) {
     .navbar__menu {
-        @apply fixed top-[-100%] left-0 w-full bg-primary1 py-5;
+        @apply fixed top-[-100%] left-0 w-full bg-primary1 py-5 z-10;
     }
     .navbar__menu.active {
         top: 0;

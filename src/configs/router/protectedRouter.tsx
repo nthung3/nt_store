@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-
 import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRouter = ({ redirect }: any) => {
-    const [isLogin, setIslogin] = useState(false);
-    return isLogin ? <Outlet /> : <Navigate to={redirect} />;
+    const role = localStorage.role;
+    const accessToken = localStorage.token;
+
+    const isAdmin = role != 1 && accessToken && role;
+
+    return isAdmin ? <Outlet /> : <Navigate to={redirect} />;
 };
 
 export default ProtectedRouter;
