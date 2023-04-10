@@ -1,7 +1,6 @@
 import { RootState } from '@/app/store';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { getProfile, Login } from '../services/auth';
 

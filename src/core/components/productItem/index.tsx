@@ -3,16 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SecondaryButton } from '../buttons';
 
-function ProductItems({ data }) {
-
-
+function ProductItems({ data }: any) {
     return (
         <article
             className="relative p-4 w-full bg-white rounded-[21px] overflow-hidden shadow hover:shadow-md card"
             style={{ minHeight: 160 }}
         >
-
-
             <div>
                 <div className="absolute top-0 right-0 z-20 flex justify-between p-4 mt-2 mr-2">
                     <div className="inline-flex items-center justify-center w-8 h-8 p-2 bg-white rounded-full shadow-sm">
@@ -35,12 +31,13 @@ function ProductItems({ data }) {
                     <img src={LoadedImage(data.img)} className="object-cover w-full h-64 bg-gray-100 rounded-3xl" />
                 </div>
             </div>
-            <h2 className="mt-5 text-lg font-semibold text-left truncate pr-14 text-textPrimary line-clamp-1">{data.name}</h2>
+            <h2 className="mt-5 text-lg font-semibold text-left truncate pr-14 text-textPrimary line-clamp-1">
+                {data.name}
+            </h2>
             <div className="flex items-center justify-between py-2">
                 <p className="mt-2 text-2xl text-textSecondary">${data.price}</p>
                 <SecondaryButton>Add To Cart</SecondaryButton>
             </div>
-
         </article>
     );
 }
