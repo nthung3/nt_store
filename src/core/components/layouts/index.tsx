@@ -21,9 +21,7 @@ function Layout({ children }: Props): JSX.Element {
 
     return (
         <>
-            <header
-                className={`${Sticky ? 'shadow-sm' : ''} duration-200 w-full  fixed  z-50 ease-out bg-primary1`}
-            >
+            <header className={`${Sticky ? 'shadow-sm' : ''} duration-200 w-full  fixed  z-50 ease-out bg-primary1`}>
                 <Navbar />
             </header>
             <main className="overflow-hidden main">{children}</main>

@@ -34,7 +34,6 @@ function HomeMenu() {
                             <ProductItems key={index} data={value} />
                         ))}
                     </Suspense>
-
                 </div>
             </div>
         </section>

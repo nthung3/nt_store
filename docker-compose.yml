@@ -1,17 +1,5 @@
 version: '3.8'
 services:
-    frontend:
-        stdin_open: true
-        tty: true
-        container_name: final-demo
-        build:
-            context: ./
-            dockerfile: Dockerfile
-        volumes:
-            - .:/app
-            - /app/node_modules
-        ports:
-            - '5173:5173'
     backend:
         stdin_open: true
         tty: true
@@ -21,7 +9,7 @@ services:
             dockerfile: Dockerfile
         environment:
             - PORT=8888
-            - MONGODB_URL=mongodb+srv://thebigger:hungqn1234@cluster0.4t4dmab.mongodb.net/?retryWrites=true&w=majority
+            - MONGODB_URL=mongodb+srv://thanhhunq2k_db_user:CQEEerWsis0l913w@cluster0.nrzbmoo.mongodb.net/?retryWrites=true&w=majority
             - ACCESS_TOKEN_SECRET=Th3-bigger-name
             - REFRESH_TOKEN_SECRET=Th3-bigger-name-refresh
             - CLOUD_NAME=dk4gkjn0g

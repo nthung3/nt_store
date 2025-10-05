@@ -1,16 +1,37 @@
 import express from 'express';
 import { auth, isAdmin } from '../../middleware/auth.js';
-import { getAllProfile, getProfile, signIn, signup } from './user.controller.js';
-const router = express.Router();
-router.get('/profile', (req, res) => {
-    res.send('hello from simple server');
-});
+import {
+    signIn,
+    signup,
+    getProfile,
+    getAllUsers,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser,
+    searchUsers,
+    updateUserRole,
+    createAdmin,
+} from './user.controller.js';
 
-router.get('/getAll', auth, isAdmin, getAllProfile);
+const router = express.Router();
+
+// Authentication routes (public)
 router.post('/login', signIn);
-router.get('/getprofile', auth, getProfile);
 router.post('/signup', signup);
-router.post('/loginAdmin', (req, res) => {
-    res.send('hello from simple server :)');
-});
+
+// User profile routes (authenticated)
+router.get('/profile', auth, getProfile);
+router.put('/profile', auth, updateUser); // User can update their own profile
+
+// Admin routes (authenticated + admin only)
+router.get('/', auth, isAdmin, getAllUsers);
+router.get('/search', auth, isAdmin, searchUsers);
+router.post('/', auth, isAdmin, createUser);
+router.post('/create-admin', auth, isAdmin, createAdmin); // Create admin account
+router.get('/:userId', auth, isAdmin, getUserById);
+router.put('/:userId', auth, isAdmin, updateUser);
+router.delete('/:userId', auth, isAdmin, deleteUser);
+router.patch('/:userId/role', auth, isAdmin, updateUserRole);
+
 export default router;

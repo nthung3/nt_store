@@ -23,7 +23,7 @@ export default function Navbar() {
                         Food Craft
                     </div>
                 </div>
-                <nav className={`${activeMenu ? "" : "active"} navbar__menu`}>
+                <nav className={`${activeMenu ? '' : 'active'} navbar__menu`}>
                     <ul className={`flex justify-between gap-y-8 flex-col text-center md:flex-row items-center gap-2`}>
                         <li className="list-none">
                             <Link
@@ -50,7 +50,9 @@ export default function Navbar() {
                             </Link>
                         </li>
                     </ul>
-                    <div className="block md:hidden absolute top-0 right-0 p-4"><AiOutlineMenu onClick={handleActiveMenu} /></div>
+                    <div className="block md:hidden absolute top-0 right-0 p-4">
+                        <AiOutlineMenu onClick={handleActiveMenu} />
+                    </div>
                 </nav>
                 <div className="flex items-center gap-2">
                     <div className="p-2">
@@ -74,7 +76,9 @@ export default function Navbar() {
                         </PrimaryButton>
                     )}
 
-                    <div className="block md:hidden"><AiOutlineMenu onClick={handleActiveMenu} /></div>
+                    <div className="block md:hidden">
+                        <AiOutlineMenu onClick={handleActiveMenu} />
+                    </div>
                 </div>
             </div>
         </div>

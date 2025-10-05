@@ -57,33 +57,95 @@ export const ListProductRECOMMENDED = async (req, res) => {
 
 export const UpdateProduct = async (req, res) => {
     try {
-        const { productId } = req.query;
-        const { categoryId, img, name, dsc, price } = req.body;
+        const { productId } = req.params;
+        
+        if (!productId) {
+            return res.status(404).json({ 
+                status: 'error',
+                message: 'Product ID is required' 
+            });
+        }
 
-        if (!productId) return res.status(404).json({ message: 'Product not found' });
-        return res
-            .status(201)
-            .json(await ProductService.updateProduct({ productId, categoryId, img, name, dsc, price }));
+        // Check if product exists
+        const existingProduct = await ProductModel.findById(productId);
+        if (!existingProduct) {
+            return res.status(404).json({ 
+                status: 'error',
+                message: 'Product not found' 
+            });
+        }
+
+        let updateData = {};
+
+        // Parse data from form if it exists
+        if (req.body.data) {
+            updateData = JSON.parse(req.body.data);
+        } else {
+            updateData = req.body;
+        }
+
+        // Handle image upload if present
+        if (req.files && req.files['imageFile']) {
+            const imageFile = req.files['imageFile'][0];
+            const imgResult = await cloudinary.v2.uploader.upload(imageFile.path, {
+                folder: 'imageFile',
+            });
+            updateData.img = imgResult.secure_url;
+        }
+
+        // Update product
+        const updatedProduct = await ProductModel.findByIdAndUpdate(
+            productId,
+            { $set: updateData },
+            { new: true, runValidators: true }
+        );
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Product updated successfully',
+            data: updatedProduct,
+        });
     } catch (error) {
-        res.status(500).json({ message: '500 Internal Server Error' });
-        console.log(error);
+        console.error('Update product error:', error);
+        res.status(500).json({ 
+            status: 'error',
+            message: error.message || '500 Internal Server Error' 
+        });
     }
 };
 
 export const DeleteProduct = async (req, res) => {
     try {
-        const { productId } = req.query;
-        const Id = await ProductModel.findById(productId);
-        if (!Id) return res.status(404).json({ message: 'Can not find product id' });
+        const { productId } = req.params;
+        
+        if (!productId) {
+            return res.status(400).json({ 
+                status: 'error',
+                message: 'Product ID is required' 
+            });
+        }
 
-        return res.status(201).json({
-            status: 'delete success',
-            message: `${productId} has been delete successful`,
-            data: await ProductService.deleteProduct({ productId }),
+        const product = await ProductModel.findById(productId);
+        if (!product) {
+            return res.status(404).json({ 
+                status: 'error',
+                message: 'Product not found' 
+            });
+        }
+
+        await ProductService.deleteProduct({ productId });
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Product deleted successfully',
+            data: product,
         });
     } catch (error) {
-        res.status(500).json({ message: '500 Internal Server Error' });
-        console.log(error);
+        console.error('Delete product error:', error);
+        res.status(500).json({ 
+            status: 'error',
+            message: error.message || '500 Internal Server Error' 
+        });
     }
 };
 

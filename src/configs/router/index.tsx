@@ -1,7 +1,6 @@
 import Admin from '@/app/pages/admin';
 import { Routers } from '@/constants/router';
 
-
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRouter from './protectedRouter';

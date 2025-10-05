@@ -59,11 +59,9 @@ const Navbar = () => {
     const { resultAccount, getProfileAPI } = UseAuthentication();
     const { token, result } = resultAccount;
 
-
     useEffect(() => {
-        getProfileAPI()
-    }, [getProfileAPI])
-
+        getProfileAPI();
+    }, [getProfileAPI]);
 
     return (
         <div className="relative flex justify-between p-2 md:ml-6 md:mr-6">
@@ -90,7 +88,6 @@ const Navbar = () => {
                     icon={<RiNotification3Line />}
                 />
                 {token && <Profile data={result} />}
-
             </div>
         </div>
     );

@@ -7,7 +7,6 @@ import { RiContactsLine } from 'react-icons/ri';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { HiOutlineRefresh } from 'react-icons/hi';
 
-
 export const links = [
     {
         title: 'Dashboard',

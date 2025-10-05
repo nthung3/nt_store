@@ -13,7 +13,7 @@ export default function Login() {
     });
     const accessToken = localStorage.getItem('token');
     const navigate = useNavigate();
-    const debounce = useDeferredValue(fields)
+    const debounce = useDeferredValue(fields);
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target;
         const id = target.id;
@@ -26,11 +26,9 @@ export default function Login() {
         }));
     };
 
-
     useEffect(() => {
         if (token && accessToken) return navigate('/');
     }, [token, accessToken]);
-
 
     const handleOnsubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -59,10 +57,7 @@ export default function Login() {
                             </div>
                             <form onSubmit={handleOnsubmit} className="mt-4">
                                 <div>
-                                    <label
-                                        className="block text-sm font-medium text-gray-800 dark:text-gray-400"
-
-                                    >
+                                    <label className="block text-sm font-medium text-gray-800 dark:text-gray-400">
                                         {' '}
                                         Email{' '}
                                     </label>
@@ -76,10 +71,7 @@ export default function Login() {
                                     />
                                 </div>
                                 <div className="mt-4">
-                                    <label
-                                        className="block text-sm font-medium text-gray-800 dark:text-gray-400"
-
-                                    >
+                                    <label className="block text-sm font-medium text-gray-800 dark:text-gray-400">
                                         {' '}
                                         Password{' '}
                                     </label>

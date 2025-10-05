@@ -11,14 +11,20 @@ import {
     ListProductRECOMMENDED,
     UpdateProduct,
 } from './product.controller.js';
+
 const router = express.Router();
+
+// Public routes
 router.get('/', ListProduct);
 router.get('/recommend', ListProductRECOMMENDED);
-router.post('/createProduct', upload.fields([{ name: 'imageFile', maxCount: 1 }]), auth, isAdmin, CreateProduct);
-
-router.post('/createProductByFix', CreateProductByFix);
-// upload.fields([{ name: "imageFile", maxCount: 1 }]),
-router.patch('/updateProduct?:productId', auth, isAdmin, UpdateProduct);
-router.delete('/deleteProduct?:productId', auth, isAdmin, DeleteProduct);
 router.get('/:productId', getProductById);
+
+// Admin routes (authenticated + admin only)
+router.post('/', upload.fields([{ name: 'imageFile', maxCount: 1 }]), auth, isAdmin, CreateProduct);
+router.put('/:productId', upload.fields([{ name: 'imageFile', maxCount: 1 }]), auth, isAdmin, UpdateProduct);
+router.delete('/:productId', auth, isAdmin, DeleteProduct);
+
+// Development/testing route
+router.post('/fix', CreateProductByFix);
+
 export default router;

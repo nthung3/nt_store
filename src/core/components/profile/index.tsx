@@ -33,8 +33,9 @@ export default function Profile(result) {
                     <Menu.Item>
                         {({ active }) => (
                             <a
-                                className={`${active ? 'bg-primary text-white' : 'text-gray-900'
-                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                className={`${
+                                    active ? 'bg-primary text-white' : 'text-gray-900'
+                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 href="/account-settings"
                             >
                                 Account settings
@@ -44,8 +45,9 @@ export default function Profile(result) {
                     <Menu.Item>
                         {({ active }) => (
                             <a
-                                className={`${active ? 'bg-primary text-white' : 'text-gray-900'
-                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                className={`${
+                                    active ? 'bg-primary text-white' : 'text-gray-900'
+                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                             >
                                 Documentation
                             </a>
@@ -63,8 +65,9 @@ export default function Profile(result) {
                     <Menu.Item>
                         {({ active }) => (
                             <a
-                                className={`${active ? 'bg-primary text-white' : 'text-gray-900'
-                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                className={`${
+                                    active ? 'bg-primary text-white' : 'text-gray-900'
+                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 onClick={handleLogout}
                             >
                                 Logout
